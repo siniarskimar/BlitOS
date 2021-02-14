@@ -7,7 +7,7 @@ default_bootloader += bootloader-limine
 endif
 
 default_bootloader := $(default_bootloader)
-export $(BOOTLOADER) := $(firstword $(default_bootloader))
+export BOOTLOADER :=$(firstword $(default_bootloader))
 endif
 
 .PHONY: bootloader
