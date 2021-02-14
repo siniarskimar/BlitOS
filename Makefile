@@ -21,3 +21,4 @@ all: loader kernel
 
 include $(SOURCE_ROOT)/loader/.build.mk
 include $(SOURCE_ROOT)/kernel/.build.mk
+include $(SOURCE_ROOT)/boot/.build.mk
