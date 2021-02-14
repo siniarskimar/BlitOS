@@ -20,10 +20,8 @@ $(CRTEND_OBJ)
 
 kernel_LDSCRIPT := $(SOURCE_DIR)/arch/x86/link.ld
 
-$(info $(kernel_OBJS))
-
 $(kernel_TARGET): $(kernel_OBJS) $(kernel_LDSCRIPT)
-	$(LD) $(kernel_OBJS) -T $(kernel_LDSCRIPT) -nostdlib -o $@ -lgcc
+	$(CC) $(kernel_OBJS) -T $(kernel_LDSCRIPT) -nostdlib -o $@ -lgcc
 
 $(BUILD_ROOT)/kernel/%.o: $(SOURCE_DIR)/%
 	mkdir -p $(dir $@)
