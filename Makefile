@@ -2,10 +2,7 @@ MAKEFLAGS += -r
 DEFAULT_GOAL := all
 
 export SOURCE_ROOT := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
-
-ifeq ($(BUILD_ROOT),)
-$(error Missing variable BUILD_ROOT)
-endif
+export BUILD_ROOT ?= $(SOURCE_ROOT)/build
 
 ifeq ($(wildcard $(BUILD_ROOT)),)
 $(shell mkdir $(BUILD_ROOT))
