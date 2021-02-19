@@ -16,5 +16,9 @@ $(patsubst %,-I%,$(kernel_INCDIRS))
 .PHONY: kernel
 kernel: $(kernel_TARGET)
 
+.PHONY: kernel-sysroot
+kernel-sysroot: kernel
+	cp $(kernel_TARGET) $(BUILD_ROOT)/sysroot/boot
+
 include $(SOURCE_DIR)/arch/$(ARCH)/.build.mk
 
