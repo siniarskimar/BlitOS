@@ -15,7 +15,7 @@ $(CFLAGS) \
 $(patsubst %,-I%,$(kernel_INCDIRS))
 
 .PHONY: kernel
-kernel: $(kernel_TARGET)
+kernel: libk $(kernel_TARGET)
 
 .PHONY: kernel-sysroot
 kernel-sysroot: kernel

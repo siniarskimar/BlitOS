@@ -13,7 +13,7 @@ $(info Source root: $(SOURCE_ROOT))
 $(info Build root: $(BUILD_ROOT))
 
 .PHONY: all
-all: kernel
+all: libk kernel
 	@echo ======= Compilation complete
 
 .PHONY: sysroot
@@ -36,5 +36,6 @@ $(BUILD_ROOT)/blit.img:
 	parted $@ mktable msdos
 	parted $@ mkpart primary fat32 2048 100%
 
-include $(SOURCE_ROOT)/loader/.build.mk
+include $(SOURCE_ROOT)/arch/$(ARCH)/.build.mk
+include $(SOURCE_ROOT)/libk/.build.mk
 include $(SOURCE_ROOT)/kernel/.build.mk
