@@ -7,28 +7,32 @@ PHDRS {
 }
 
 KERNEL_LMA = 3M;
-KERNEL_VMA = 1024M * 3 + KERNEL_LMA;
+KERNEL_VMA = 3 * 1024M;
 SECTIONS {
-    . = KERNEL_VMA;
-
-    .text ALIGN(4K) : AT(ADDR(.text) - KERNEL_VMA) {
+    . = KERNEL_LMA;
+    .stivalehdr : {
+        *(.stivalehdr);
+    }
+    __kernel_start = .;
+    .text ALIGN(4K) :  {
         KEEP(*(.init));
         *(.text);
         KEEP(*(.fini));
     }:text
     
-    .rodata ALIGN(4K) :AT(ADDR(.rodata) - KERNEL_VMA) {
+    .rodata ALIGN(4K) : {
         *(.rodata);
     }:rodata
 
-    .data ALIGN(4K) :AT(ADDR(.data) - KERNEL_VMA) {
+    .data ALIGN(4K) : {
         *(.data);
     }:data
 
-    .bss ALIGN(4K) : AT(ADDR(.bss) - KERNEL_VMA){
+    .bss ALIGN(4K) : {
         *(COMMON*);
         *(.bss*);
         . += 4K;
         __stack_top = .;
     }
+    __kernel_end = .;
 }

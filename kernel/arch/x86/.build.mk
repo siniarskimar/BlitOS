@@ -1,5 +1,7 @@
 kernel_SRC :=\
-$(SOURCE_DIR)/arch/x86/crt/crt0.S
+$(SOURCE_DIR)/arch/x86/crt/crt0.S \
+$(SOURCE_DIR)/arch/x86/boot/stivale.S \
+$(SOURCE_DIR)/arch/x86/boot/stivale.c
 
 CRTBEGIN_OBJ := $(shell $(CC) $(kernel_CFLAGS) -print-file-name=crtbegin.o)
 CRTEND_OBJ:=$(shell $(CC) $(kernel_CFLAGS) -print-file-name=crtend.o)
