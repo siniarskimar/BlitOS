@@ -4,7 +4,8 @@ kernel_TARGET := $(BUILD_ROOT)/kernel/blitkern.elf
 
 kernel_INCDIRS :=\
 $(SOURCE_ROOT) \
-$(SOURCE_ROOT)/include
+$(SOURCE_ROOT)/include \
+$(SOURCE_DIR)/include
 
 kernel_CFLAGS :=\
 $(CFLAGS) \
