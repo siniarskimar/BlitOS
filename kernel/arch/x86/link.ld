@@ -12,7 +12,8 @@ SECTIONS {
     . = KERNEL_LMA;
     .stivalehdr : {
         *(.stivalehdr);
-    }
+    }:none
+
     __kernel_start = .;
     .text ALIGN(4K) :  {
         KEEP(*(.init));
@@ -37,4 +38,10 @@ SECTIONS {
         __stack_top = .;
     }
     __kernel_end = .;
+
+    /DISCARD/ : {
+        /* These won't be needed */
+        *(.note*);
+        *(.comment*);
+    }
 }
