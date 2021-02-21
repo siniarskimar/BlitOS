@@ -31,6 +31,8 @@ SECTIONS {
     .bss ALIGN(4K) : {
         *(COMMON*);
         *(.bss*);
+        /* Align to 16 bytes as C requires this */
+        . = ALIGN(16);
         . += 4K;
         __stack_top = .;
     }
