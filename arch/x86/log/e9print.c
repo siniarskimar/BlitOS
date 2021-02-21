@@ -17,6 +17,7 @@ static inline void e9_itoa(size_t num, short base) {
     
     if(num == 0) {
         e9_putc('0');
+        return;
     }
     while(t != 0) {
         t /= base;
