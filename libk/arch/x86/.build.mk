@@ -3,7 +3,6 @@ arch/x86/log/e9print.c \
 libk/arch/x86/log.c
 
 libk_OBJS := $(patsubst %,$(BUILD_ROOT)/%.o,$(libk_SRC))
-$(info $(libk_OBJS))
 
 $(libk_TARGET): $(libk_OBJS)
 	$(AR) rcs $@ $^
