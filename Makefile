@@ -36,7 +36,7 @@ img: $(BUILD_ROOT)/blit.img all sysroot
 $(BUILD_ROOT)/blit.img:
 	dd if=/dev/zero of=$@ bs=1M count=128
 	parted $@ mktable msdos
-	parted $@ mkpart primary fat32 2048 100%
+	parted $@ mkpart primary fat32 2048s 100%
 
 include $(SOURCE_ROOT)/arch/$(ARCH)/.build.mk
 include $(SOURCE_ROOT)/libk/.build.mk

@@ -10,9 +10,12 @@ fi
 loop_dev=$(losetup --find --show -P $imgfile)
 
 cleanup() {
+    sync
+    # Sleep a second to make sure no device is busy
+    sleep 1
     umount img >/dev/null || true
-    rm -r img >/dev/null || true
     losetup -d $loop_dev || true
+    rm -r img >/dev/null || true
 }
 if [ "$?" -ne 0 ]; then
     cleanup
@@ -20,8 +23,8 @@ if [ "$?" -ne 0 ]; then
     exit -2
 fi
 mkdir -p img
-mount `echo $loop_dev`p1 img
+mkfs.fat -F 32 "$loop_dev"p1
+mount "$loop_dev"p1 img
 cp -r $sysroot/* -t img/
-sync
 cleanup
 exit 0
