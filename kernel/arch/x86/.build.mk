@@ -1,7 +1,7 @@
 kernel_SRC :=\
-$(SOURCE_DIR)/arch/x86/crt/crt0.S \
-$(SOURCE_DIR)/arch/x86/boot/stivale.S \
-$(SOURCE_DIR)/arch/x86/boot/stivale.c
+kernel/arch/x86/crt/crt0.S \
+kernel/arch/x86/boot/stivale.S \
+kernel/arch/x86/boot/stivale.c
 
 CRTBEGIN_OBJ := $(shell $(CC) $(kernel_CFLAGS) -print-file-name=crtbegin.o)
 CRTEND_OBJ:=$(shell $(CC) $(kernel_CFLAGS) -print-file-name=crtend.o)
@@ -16,7 +16,7 @@ endif
 kernel_OBJS :=\
 $(BUILD_ROOT)/kernel/arch/x86/crt/crti.o \
 $(CRTBEGIN_OBJ) \
-$(subst $(SOURCE_ROOT),$(BUILD_ROOT),$(patsubst %,%.o,$(kernel_SRC))) \
+$(patsubst %,$(BUILD_ROOT)/%.o,$(kernel_SRC)) \
 $(BUILD_ROOT)/kernel/arch/x86/crt/crtn.o \
 $(CRTEND_OBJ)
 

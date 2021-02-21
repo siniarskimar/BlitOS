@@ -9,6 +9,8 @@ $(shell mkdir $(BUILD_ROOT))
 endif
 export BUILD_ROOT := $(patsubst %/,%,$(BUILD_ROOT))
 
+export VPATH := $(SOURCE_ROOT)
+
 $(info Source root: $(SOURCE_ROOT))
 $(info Build root: $(BUILD_ROOT))
 
